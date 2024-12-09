@@ -9,6 +9,7 @@ import { FormControl } from '@angular/forms';
 export class SelectFormComponent implements OnInit {
   selectedValue = new FormControl('');
   jsonData = {};
+  jsonForm = {};
   jsonDataOptions = {
     a: {
       user: {
@@ -86,7 +87,6 @@ export class SelectFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.selectedValue.valueChanges.subscribe((value) => {
-      console.log('Selected value changed:', value);
       this.updateJason(); // Update the displayed value
     });
   }

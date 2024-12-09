@@ -14,7 +14,10 @@
 
 .select-form {
   width: 100%;
-  margin-bottom: 20px;
+}
+
+.empty-state {
+  margin-top: 20px;
 }
 
 .form-group {
@@ -41,7 +44,6 @@
 }
 
 .result {
-  margin-top: 20px;
   font-size: 14px;
   color: #333;
 }
@@ -51,6 +53,5 @@
 }
 
 .dynamic-form-section {
-  margin-top: 20px;
   width: 100%;
 }

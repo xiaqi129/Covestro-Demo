@@ -1,3 +1,146 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import "ng-zorro-antd/ng-zorro-antd.min.css";
+@use "@angular/material" as mat;
+
+@include mat.core();
+
+:root {
+  --sys-display-large: 500 24px/32px Roboto, sans-serif;
+  --sys-display-large-tracking: normal;
+
+  --sys-display-medium: 500 20px/28px Roboto, sans-serif;
+  --sys-display-medium-tracking: normal;
+
+  --sys-display-small: 500 20px/24px Roboto, sans-serif;
+  --sys-display-small-tracking: normal;
+
+  --sys-body-large: 400 14px/20px Roboto, sans-serif;
+  --sys-body-large-tracking: normal;
+
+  --sys-body-medium-size: 14px;
+  --sys-body-medium-line-height: normal;
+  --sys-body-medium-tracking: normal;
+
+  --sys-body-small-size: 12px;
+  --sys-body-small-line-height: 20px;
+  --sys-body-small-tracking: .0333333em;
+}
+
+$app-light-theme: mat.define-theme((
+  color: (
+    theme-type: light,
+    primary: mat.$azure-palette,
+    tertiary: mat.$blue-palette,
+  ),
+  typography: (
+    use-system-variables: true,
+  ),
+  density: (
+    scale: 0,
+  )
+));
+
+$app-dark-theme: mat.define-theme((
+  color: (
+    theme-type: dark,
+    primary: mat.$cyan-palette,
+    tertiary: mat.$orange-palette,
+  ),
+  typography: (
+    use-system-variables: true,
+  ),
+  density: (
+    scale: 0,
+  )
+));
+
+@include mat.typography-hierarchy($app-light-theme);
+
+html, body {
+  height: 100%;
+}
+
+body {
+  --app-primary-color: #{mat.get-theme-color($app-light-theme, primary)};
+  --app-primary-background: #{mat.get-theme-color($app-light-theme, primary-container)};
+
+  margin: 0;
+
+  @include mat.all-component-themes($app-light-theme);
+
+  --mdc-elevated-card-container-color: #fafafa;
+
+  .button-content {
+    display: flex;
+    align-items: center;
+  }
+
+  &.dark-mode {
+    --app-primary-color: #{mat.get-theme-color($app-dark-theme, primary)};
+    --app-primary-background: #{mat.get-theme-color($app-dark-theme, primary-container)};
+
+    @include mat.all-component-colors($app-dark-theme);
+
+    .dynamic-form-markdown {
+      code, pre {
+        background-color: #696969;
+      }
+    }
+  }
+
+  .header, .footer {
+    color: var(--app-primary-color);
+    background: var(--app-primary-background);
+
+    .mat-mdc-icon-button {
+      color: inherit;
+    }
+
+    .mat-mdc-button.mat-unthemed {
+      color: inherit
+    }
+  }
+
+  .router-link-active {
+    color: var(--app-primary-color);
+    background: var(--app-primary-background);
+  }
+
+  .preferences-menu {
+    div {
+      color: var(--mat-app-text-color)
+    }
+  }
+
+  .dynamic-form-markdown {
+    a {
+      color: var(--app-primary-color);
+    }
+  }
+}
+
+@import "@dynamic-forms/material/assets/scss/theme";
+
+.dynamic-form-wrapper {
+  width: 100%;
+
+  div {
+    color: var(--mat-app-text-color)
+  }
+
+  .dynamic-form {
+    &:not(.maximized) {
+      max-width: 800px;
+
+      &.small {
+        max-width: 600px;
+      }
+    }
+  }
+}
+
+.dynamic-form-example {
+  .mat-tab-header-pagination {
+    z-index: auto
+  }
+}

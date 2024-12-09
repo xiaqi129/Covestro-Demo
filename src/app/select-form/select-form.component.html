@@ -8,12 +8,19 @@
       </select>
     </form>
 
-    <div *ngIf="selectedValue.value" class="result">
+    <div *ngIf="selectedValue.value; else emptyState" class="result">
       <p>You selected: <strong>{{ selectedValue.value }}</strong></p>
     </div>
+    <ng-template #emptyState>
+      <mat-card class="empty-state">
+        <mat-card-content>
+          <p>No option selected. Please choose an option from the dropdown.</p>
+        </mat-card-content>
+      </mat-card>
+    </ng-template>
   </div>
 
   <div class="dynamic-form-section">
-    <app-dynamic-form [jsonData]="jsonData"></app-dynamic-form>
+    <app-dynamic-form [selectedForm]="selectedValue.value"  ></app-dynamic-form>
   </div>
 </div>
